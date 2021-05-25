@@ -102,4 +102,5 @@ public class Contoh implements Formula {
 // 6. Pastikan tidak ada error
 // 7. Apabila sudah tidak ada error, buat branch baru di git. di intellij lewat
 // git->new branch->isi nama branch dengan nama modul
-// 8. commit codenya
+// 8. commit codenya dengan message "Add <nama modul>"
+// 9. Push codenya
