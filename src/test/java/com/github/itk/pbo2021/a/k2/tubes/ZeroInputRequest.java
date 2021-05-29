@@ -1,12 +1,14 @@
 package com.github.itk.pbo2021.a.k2.tubes;
 
-import com.github.itk.pbo2021.a.k2.tubes.contract.Input;
+import com.github.itk.pbo2021.a.k2.tubes.contract.InputRequest;
+import com.github.itk.pbo2021.a.k2.tubes.contract.InputValues;
+import com.github.itk.pbo2021.a.k2.tubes.contract.ValueProperty;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class ZeroInput extends Input {
+public class ZeroInputRequest extends InputRequest {
   private final Map<String, Value> names = new HashMap<>();
   private final Map<String, FormulaAction> actions = new HashMap<>();
 
@@ -39,7 +41,7 @@ public class ZeroInput extends Input {
   }
 
   @Override
-  public Input addAction(String name, FormulaAction action) {
+  public InputRequest addAction(String name, FormulaAction action) {
     actions.put(name, action);
     return this;
   }
@@ -49,7 +51,7 @@ public class ZeroInput extends Input {
         (s, action) -> System.out.printf("%s : %s%n", s, action.apply(new ZeroValues())));
   }
 
-  static class Value implements Input.Value {
+  static class Value implements ValueProperty {
     String defVal, name, description;
 
     public Value(String name) {
@@ -62,7 +64,7 @@ public class ZeroInput extends Input {
     }
 
     @Override
-    public Input.Value setDefault(String defVal) {
+    public ValueProperty setDefault(String defVal) {
       this.defVal = defVal;
       return this;
     }

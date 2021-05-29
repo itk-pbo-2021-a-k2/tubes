@@ -1,0 +1,58 @@
+@startuml
+!include contract.puml
+
+'https://plantuml.com/class-diagram
+
+package com.github.itk.pbo2021.a.k2.tubes {
+
+'contract -[hidden]- fx
+
+'Note top of fx : Package yang menggunakan JavaFX library sebagai UI
+package fx {
+
+class MainPane {
+    +addFormulaGroup(FormulaGroup group)
+    +setFormula(Formula formula)
+}
+
+class Sidebar {
+    +add(FormulaGroup group)
+    +setOnFormulaButtonAction(Consumer<Formula> formula)
+    #create(Formula formula) : FormulaGroupNode
+}
+
+interface FormulaGroupNode {
+    +toNode() : Node
+    +setOnFormulaButtonAction(Consumer<Formula> formula)
+}
+
+
+class FormulaFormPaneGroup {
+    +add(Formula formula) : FormulaFormPane
+    +remove(FormulaFormPane pane) : void
+    +clear();
+}
+
+class FormulaFormPane {
+    +FormulaFormPane(Formula formula)
+
+    +clear() : void
+}
+
+MainPane --o FormulaFormPaneGroup
+MainPane --o Sidebar
+Sidebar --o FormulaGroupNode
+FormulaFormPaneGroup --o FormulaFormPane
+
+' relation with contract
+FormulaGroupNode --o FormulaGroup
+
+FormulaFormPane --|> InputValues
+FormulaFormPane --o Formula
+}
+
+
+}
+'package com.github.itk.pbo2021.a.k2.tubes
+
+@enduml

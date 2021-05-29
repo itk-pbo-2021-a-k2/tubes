@@ -1,6 +1,8 @@
 package com.github.itk.pbo2021.a.k2.tubes;
 
-import com.github.itk.pbo2021.a.k2.tubes.contract.Input;
+import com.github.itk.pbo2021.a.k2.tubes.contract.InputRequest;
+import com.github.itk.pbo2021.a.k2.tubes.contract.InputValues;
+import com.github.itk.pbo2021.a.k2.tubes.contract.ValueProperty;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,17 +11,17 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-public class SystemInput extends Input {
+public class SystemInputRequest extends InputRequest {
   Map<String, FormulaAction> actions = new HashMap<>();
   Map<String, Value> values = new HashMap<>();
   Scanner scanner;
 
-  public SystemInput(Scanner scanner) {
+  public SystemInputRequest(Scanner scanner) {
     this.scanner = scanner;
   }
 
   @Override
-  public Input addAction(String name, FormulaAction action) {
+  public InputRequest addAction(String name, FormulaAction action) {
     actions.put(name, action);
     return this;
   }
@@ -84,7 +86,7 @@ public class SystemInput extends Input {
     actions.forEach((s, action) -> System.out.printf("%s : %s%n", s, action.apply(values)));
   }
 
-  public void forEachAction(BiConsumer<String, FormulaAction> action ) {
+  public void forEachAction(BiConsumer<String, FormulaAction> action) {
     actions.forEach(action);
   }
 
@@ -97,7 +99,7 @@ public class SystemInput extends Input {
     return new SystemValues();
   }
 
-  public static class Value implements Input.Value {
+  public static class Value implements ValueProperty {
     String name, description, defVal, value;
     Function<Value, String> action;
 
@@ -133,7 +135,7 @@ public class SystemInput extends Input {
     }
 
     @Override
-    public Input.Value setDefault(String defVal) {
+    public ValueProperty setDefault(String defVal) {
       this.defVal = defVal;
       return this;
     }
@@ -158,7 +160,7 @@ public class SystemInput extends Input {
     Map<String, String> values = new HashMap<>();
 
     public SystemValues() {
-      SystemInput.this.values.forEach((s, value) -> values.put(s, value.getValue()));
+      SystemInputRequest.this.values.forEach((s, value) -> values.put(s, value.getValue()));
     }
 
     @Override

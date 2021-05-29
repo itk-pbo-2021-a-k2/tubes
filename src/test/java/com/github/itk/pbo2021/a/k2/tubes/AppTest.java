@@ -1,6 +1,6 @@
 package com.github.itk.pbo2021.a.k2.tubes;
 
-import com.github.itk.pbo2021.a.k2.tubes.fisdas2.ModulFactory;
+import com.github.itk.pbo2021.a.k2.tubes.fisdas2.Fisdas2Group;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,9 +19,9 @@ public class AppTest {
 
     try {
 
-      var factory = new ModulFactory();
-      FakerInput faker = new FakerInput();
-      ZeroInput zero = new ZeroInput();
+      var factory = new Fisdas2Group();
+      FakerInputRequest faker = new FakerInputRequest();
+      ZeroInputRequest zero = new ZeroInputRequest();
 
       for ( var formula : factory ) {
         formula.apply(faker);

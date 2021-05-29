@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package com.github.itk.pbo2021.a.k2.tubes {
+
+package contract {
+
+interface FormulaAction {
+    +accept(InputValues values);
+}
+
+interface InputRequest {
+    +request(String name) : ValueProperty
+    +request(String name, Pattern pattern) : ValueProperty
+    +requestDecimal(String name) : ValueProperty
+    +requestInteger(String name) : ValueProperty
+
+    +addAction(FormulaAction action) : void
+}
+
+abstract InputValues {
+    --Getter--
+    {abstract} +get(String name) : String
+    +getBigInteger(String name) : BigInteger
+    +getBigDecimal(String name) : BigDecimal
+    +getFloat(String name) : float
+    +getDouble(String name) : double
+    +getInt(String name) : int
+
+}
+
+interface ValueProperty {
+     --Getter--
+     +getName() : String
+     +getDescription() : String
+     +getDefault() : String
+     --Setter--
+     +setDefault() : String
+ }
+
+interface Formula {
+    +name() : String
+    +apply(InputRequest input) : void
+}
+
+
+interface FormulaGroup {
+    +name() : String
+    +get() : List<Formula>
+}
+
+
+FormulaGroup --o Formula
+Formula --o FormulaAction
+Formula - InputRequest : request Input >
+Formula - InputRequest : add Formula Action >
+InputRequest --o InputValues
+InputRequest --o ValueProperty
+
+Formula -- ValueProperty
+
+FormulaAction -- InputValues
+
+'FormulaAction - InputValues : Use >
+
+}
+
+}
+'package com
+
+@enduml

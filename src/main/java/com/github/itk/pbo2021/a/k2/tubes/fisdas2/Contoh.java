@@ -1,7 +1,8 @@
 package com.github.itk.pbo2021.a.k2.tubes.fisdas2;
 
 import com.github.itk.pbo2021.a.k2.tubes.contract.Formula;
-import com.github.itk.pbo2021.a.k2.tubes.contract.Input;
+import com.github.itk.pbo2021.a.k2.tubes.contract.InputRequest;
+import com.github.itk.pbo2021.a.k2.tubes.contract.InputValues;
 
 /**
  * Contoh rumus
@@ -26,7 +27,7 @@ public class Contoh implements Formula {
    * @param input input for formula to apply to
    */
   @Override
-  public void apply(Input input) {
+  public void apply(InputRequest input) {
     // minta input integer dengan nama foo
     input.requestInteger("foo");
     // minta input bilangan desimal dengan nama bar
@@ -54,7 +55,7 @@ public class Contoh implements Formula {
         });
   }
 
-  public String contoh(Input.InputValues values) {
+  public String contoh(InputValues values) {
     // ambil input foo
     // as double
     var fooDouble = values.getDouble("foo");
