@@ -13,10 +13,13 @@ public class RRI implements Formula {
     @Override
     public void apply(InputRequest input) {
         var r =input.requestDecimal("R");
-        r.setDescription("Nilai Resistor");
-        input.requestDecimal("frekuensi");
-        input.requestDecimal("L");
-        input.addAction("Z", this::besarImpedansi);
+        r.setDescription("Nilai resistor yang digunakan didalam rangkaian");
+        var f=input.requestDecimal("frekuensi");
+        f.setDescription("Frekuensi sinyal tegangan");
+        var l=input.requestDecimal("L");
+        l.setDescription("Nilai induktor");
+        var z=input.addAction("Z", this::besarImpedansi);
+        z.setDescription("Besar impedansi rangkaian");
     }
     public String besarImpedansi(InputValues rumus){
         var r= rumus.getDouble("R");
