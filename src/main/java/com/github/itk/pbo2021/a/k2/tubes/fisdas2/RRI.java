@@ -20,6 +20,12 @@ public class RRI implements Formula {
         l.setDescription("Nilai induktor");
         var z=input.addAction("Z", this::besarImpedansi);
         z.setDescription("Besar impedansi rangkaian");
+        input.requestDecimal("Vm");
+        input.addAction("Im", this::arusMaksimal);
+        input.requestDecimal("R");
+        input.addAction("Vr", this::teganganresistor);
+        input.requestDecimal("Xl");
+        input.addAction("Vl",this::tegannganinduktor);
     }
     public String besarImpedansi(InputValues rumus){
         var r= rumus.getDouble("R");
@@ -32,5 +38,31 @@ public class RRI implements Formula {
         var z= Math.sqrt(r2+phi2fl*phi2fl);
         return Double.toString(z);
     }
+    public String arusMaksimal(InputValues rumus){
+        var vm=rumus.getDouble("Vm");
 
+
+
+        double z = Double.parseDouble(besarImpedansi(rumus));
+        var Im = (vm/z);
+        return Double.toString(Im);
+    }
+    public String teganganresistor(InputValues rumus){
+        var R=rumus.getDouble("R");
+
+
+
+        double Im = Double.parseDouble(arusMaksimal(rumus));
+        var Vr = (Im*R);
+        return Double.toString(Vr);
+    }
+    public String tegannganinduktor(InputValues rumus){
+        var Xl=rumus.getDouble("Xl");
+
+
+
+        double Im = Double.parseDouble(arusMaksimal(rumus));
+        var Vl = (Im*Xl);
+        return Double.toString(Vl);
+    }
 }
