@@ -18,12 +18,16 @@ public class RRI implements Formula {
         f.setDescription("Frekuensi sinyal tegangan");
         var l=input.requestDecimal("L");
         l.setDescription("Nilai induktor");
-        var z=input.addAction("Z", this::besarImpedansi);
-        z.setDescription("Besar impedansi rangkaian");
-        input.requestDecimal("Vm");
+        input.addAction("Z", this::besarImpedansi);
+
+        var vm =input.requestDecimal("Vm");
+        vm.setDescription("Tegangan Maksimal");
         input.addAction("Im", this::arusMaksimal);
-        input.requestDecimal("R");
+
+        var R= input.requestDecimal("R");
+        R.setDescription("Resistor");
         input.addAction("Vr", this::teganganresistor);
+
         input.requestDecimal("Xl");
         input.addAction("Vl",this::tegannganinduktor);
     }

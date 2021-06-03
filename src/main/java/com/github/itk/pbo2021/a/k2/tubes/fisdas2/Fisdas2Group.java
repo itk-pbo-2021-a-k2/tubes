@@ -9,7 +9,8 @@ import java.util.List;
 public class Fisdas2Group implements FormulaGroup {
   List<Formula> formulas =
       List.of(
-          new RRI());
+          new RRI(),
+          new JW());
 
   @Override
   public List<Formula> get() {
