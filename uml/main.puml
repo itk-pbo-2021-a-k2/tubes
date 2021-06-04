@@ -1,0 +1,6 @@
+@startuml
+!include contract.puml
+!include fx.puml
+!include fisdas2.puml
+
+@enduml
