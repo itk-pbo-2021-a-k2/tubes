@@ -47,6 +47,7 @@ public class RLC implements Formula {
         var r= rumus.getDouble("R");
         var f= rumus.getDouble("frekuensi");
         var l= rumus.getDouble("L");
+        var c= rumus.getDouble("C");
 
         var r2= r*r;
         var phi2fl = Math.PI*2*f*l;
