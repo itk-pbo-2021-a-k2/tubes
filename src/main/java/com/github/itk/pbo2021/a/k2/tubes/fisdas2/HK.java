@@ -38,7 +38,7 @@ public class HK implements  Formula{
 
         var v1 = I1 * R1 ;
 
-        return Double.toString("v1");
+        return Double.toString(v1);
         
     }
 
@@ -48,7 +48,7 @@ public class HK implements  Formula{
     
         var v2 = I2 * R2 ;
 
-        return Double.toString("v2");
+        return Double.toString(v2);
 
 
     }
@@ -59,7 +59,7 @@ public class HK implements  Formula{
 
         var v3 = I3 * R3 ;
 
-        return Double.toString("v3");
+        return Double.toString(v3);
 
     }
 
