@@ -12,23 +12,15 @@ public class RRI implements Formula {
 
     @Override
     public void apply(InputRequest input) {
-        var r =input.requestDecimal("R");
-        r.setDescription("Nilai resistor yang digunakan didalam rangkaian");
-        var f=input.requestDecimal("frekuensi");
-        f.setDescription("Frekuensi sinyal tegangan");
-        var l=input.requestDecimal("L");
-        l.setDescription("Nilai induktor");
-        input.addAction("Z", this::besarImpedansi);
-
-        var vm =input.requestDecimal("Vm");
-        vm.setDescription("Tegangan Maksimal");
-        input.addAction("Im", this::arusMaksimal);
-
-        var R= input.requestDecimal("R");
-        R.setDescription("Resistor");
-        input.addAction("Vr", this::teganganresistor);
-
+        input.requestDecimal("R");
+        input.requestDecimal("frekuensi");
+        input.requestDecimal("L");
+        input.requestDecimal("Vm");
+        input.requestDecimal("R");
         input.requestDecimal("Xl");
+        input.addAction("Z", this::besarImpedansi);
+        input.addAction("Im", this::arusMaksimal);
+        input.addAction("Vr", this::teganganresistor);
         input.addAction("Vl",this::tegannganinduktor);
     }
     public String besarImpedansi(InputValues rumus){
