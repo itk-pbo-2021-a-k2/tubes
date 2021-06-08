@@ -26,7 +26,6 @@ public class AppTest {
       for ( var formula : factory ) {
         formula.apply(faker);
         formula.apply(zero);
-
         System.out.println("Faker");
         faker.output();
         System.out.println("Zero");

@@ -1,0 +1,49 @@
+@startuml
+!include contract.puml
+
+package com.github.itk.pbo2021.a.k2.tubes {
+
+package fisdas2 {
+
+class RRI {
+    +name() : String
+    +apply(InputRequest input) : void
+}
+
+class JW {
+    +name() : String
+    +apply((InputRequest input) : void
+}
+
+class HK {
+    +name() : String
+    +apply((InputRequest input) : void
+}
+
+class RLC {
+    +name() : String
+    +apply((InputRequest input) : void
+}
+
+class HC {
+    +name() : String
+    +apply((InputRequest input) : void
+}
+
+
+RRI --* Formula
+JW --* Formula
+HC --* Formula
+RLC --* Formula
+HK --* Formula
+
+RLC -[hidden]- RRI
+JW -[hidden]- HC
+HK -[hidden]- RRI
+
+
+}
+
+}
+
+@enduml
