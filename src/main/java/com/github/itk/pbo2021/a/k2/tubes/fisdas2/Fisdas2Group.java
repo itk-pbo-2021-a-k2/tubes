@@ -10,7 +10,8 @@ public class Fisdas2Group implements FormulaGroup {
   List<Formula> formulas =
       List.of(
           new RRI(),
-          new JW());
+          new JW(),
+          new KD());
 
   @Override
   public List<Formula> get() {
