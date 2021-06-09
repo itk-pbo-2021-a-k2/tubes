@@ -20,7 +20,8 @@ public abstract class InputRequest {
    */
   public abstract InputRequest addAction(String name, FormulaAction action);
 
-  public interface FormulaAction {
+
+    public interface FormulaAction {
     String apply(InputValues values);
   }
 }

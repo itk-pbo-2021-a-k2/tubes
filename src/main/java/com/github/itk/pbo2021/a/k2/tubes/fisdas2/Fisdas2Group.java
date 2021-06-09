@@ -9,9 +9,9 @@ import java.util.List;
 public class Fisdas2Group implements FormulaGroup {
   List<Formula> formulas =
       List.of(
-          // tambah modul disini
-          // contoh:
-          new Contoh());
+          new RRI(),
+          new JW(),
+          new KD());
 
   @Override
   public List<Formula> get() {
