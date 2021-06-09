@@ -9,9 +9,13 @@ import java.util.List;
 public class Fisdas2Group implements FormulaGroup {
   List<Formula> formulas =
       List.of(
-          new RRI(),
+          new HC(),
+          new HK(),
           new JW(),
-          new KD());
+          new KD(),
+          new RLC(),
+          new RRI(),
+          new RSP());
 
   @Override
   public List<Formula> get() {
