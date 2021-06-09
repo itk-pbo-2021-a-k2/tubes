@@ -33,7 +33,7 @@ public class RLC implements Formula {
         var f=input.requestDecimal("frekuensi");
         f.setDescription("Frekuensi sinyal tegangan");
         var z=input.addAction("Z", besarImpedansi);
-        z.setDescription("Besar impedansi rangkaian");
+        // z.setDescription("Besar impedansi rangkaian");
         input.requestDecimal("Vm");
         input.addAction("Im", arusMaksimal);
         input.requestDecimal("R");

@@ -20,7 +20,7 @@ public class HK implements  Formula{
         I2.setDescription("Arus Listrik Pada Rangkaian 2");
         var I3 = input.requestDecimal("I3");
         I3.setDescription("Arus Listrik Pada Rangkaian 3");
-        var R1 = input.requestDecimal("R1")
+        var R1 = input.requestDecimal("R1");
         R1.setDescription("Nilai Resistensi 1");
         var R2 = input.requestDecimal("R2");
         R2.setDescription("Nilai Resistensi 2");
