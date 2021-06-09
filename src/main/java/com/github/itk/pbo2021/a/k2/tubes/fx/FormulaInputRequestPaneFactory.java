@@ -70,7 +70,8 @@ public class FormulaInputRequestPaneFactory extends InputRequest {
   }
 
   public ValueProperty request(String name, LabelTextFieldPane pane) {
-    return request.put(name, pane);
+    request.put(name, pane);
+    return pane;
   }
 
   public <T> ValueProperty request(String name, StringConverter<T> converter) {

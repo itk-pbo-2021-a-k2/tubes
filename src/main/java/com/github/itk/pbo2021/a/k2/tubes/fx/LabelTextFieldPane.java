@@ -4,6 +4,7 @@ import com.github.itk.pbo2021.a.k2.tubes.contract.ValueProperty;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
@@ -40,7 +41,9 @@ public class LabelTextFieldPane extends VBox implements ValueProperty {
 
   @Override
   public ValueProperty setDescription(String description) {
-    textField.getTooltip().setText(description);
+    Tooltip tip = new Tooltip();
+    tip.setText(description);
+    textField.setTooltip(tip);
     return this;
   }
 
