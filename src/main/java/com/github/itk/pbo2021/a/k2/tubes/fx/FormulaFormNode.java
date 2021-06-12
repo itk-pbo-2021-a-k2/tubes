@@ -9,10 +9,10 @@ import javafx.scene.layout.FlowPane;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class FormulaFormNode extends BorderPane implements FormulaInputRequestPaneFactory.FormulaForm {
+public class FormulaFormNode extends BorderPane implements FormulaForm {
   private final Formula formula;
-  private final Map<String, LabelTextFieldPane> values = new LinkedHashMap<>();
-  private final Map<String, FormulaInputRequestPaneFactory.LabelTextFieldActionPane> actionValue = new LinkedHashMap<>();
+  private final Map<String, LabelTextField> values = new LinkedHashMap<>();
+  private final Map<String, LabelTextFieldAction> actionValue = new LinkedHashMap<>();
   private final SplitPane center;
 
   private final FlowPane requestLayout = new FlowPane();
@@ -21,7 +21,7 @@ public class FormulaFormNode extends BorderPane implements FormulaInputRequestPa
   public FormulaFormNode(Formula formula) {
     this.formula = formula;
 
-    FormulaInputRequestPaneFactory factory = new FormulaInputRequestPaneFactory();
+    FormulaFormFactory factory = new FormulaFormFactory();
     factory.apply(this);
 
     center = new SplitPane(requestLayout, actionLayout);
@@ -30,7 +30,7 @@ public class FormulaFormNode extends BorderPane implements FormulaInputRequestPa
   }
 
   @Override
-  public void addRequest(String name, LabelTextFieldPane field) {
+  public void addRequest(String name, LabelTextField field) {
     values.put(name, field);
     field.getTextField().setOnAction(actionEvent -> refresh());
     requestLayout.getChildren().add(field);
@@ -46,7 +46,7 @@ public class FormulaFormNode extends BorderPane implements FormulaInputRequestPa
   }
 
   @Override
-  public void addAction(String name, FormulaInputRequestPaneFactory.LabelTextFieldActionPane field) {
+  public void addAction(String name, LabelTextFieldAction field) {
     values.put(name, field);
     actionValue.put(name, field);
     actionLayout.getChildren().add(field);

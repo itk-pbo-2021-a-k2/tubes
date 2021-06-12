@@ -5,7 +5,8 @@
 
 package com.github.itk.pbo2021.a.k2.tubes {
 
-'contract -[hidden]- fx
+fx -[hidden]-------- contract
+'contract -[hidden]------ fx
 
 'Note top of fx : Package yang menggunakan JavaFX library sebagai UI
 package fx {
@@ -18,37 +19,117 @@ class MainPane {
 class Sidebar {
     +add(FormulaGroup group)
     +setOnFormulaButtonAction(Consumer<Formula> formula)
-    #create(Formula formula) : FormulaGroupNode
+    #create(Formula formula) : Sidebar.FormulaGroupNode
 }
 
-interface FormulaGroupNode {
+interface Sidebar.FormulaGroupNode {
     +toNode() : Node
     +setOnFormulaButtonAction(Consumer<Formula> formula)
 }
 
+class FormulaGroupNode {
+    +FormulaGroupNode(FormulaGroup group)
+    ---
+    +toNode() : Node
+    +setOnFormulaButtonAction((Consumer<Formula> formula)
+    +getFormulaGroup() : FormulaGroup
+}
 
-class FormulaFormPaneGroup {
-    +add(Formula formula) : FormulaFormPane
+class FormulaFormGroup {
+    +add(Formula formula) : FormulaForm
     +remove(FormulaFormPane pane) : void
     +clear();
 }
 
-class FormulaFormPane {
-    +FormulaFormPane(Formula formula)
-
-    +clear() : void
+interface FormulaForm {
+    {abstract} +addRequest(String name, LabelTextField pane)
+    {abstract} +addAction(String name, LabelTextFieldAction pane)
+    {abstract} +getFormula() : Formula
 }
 
-MainPane --o FormulaFormPaneGroup
+class FormulaFormNode {
+    +FormulaFormNode(Formula formula)
+    ----
+    +refresh()
+    +addRequest(String name, LabelTextField pane)
+    +addAction(String name, LabelTextFieldAction pane)
+}
+
+class ButtonedTitledPane {
+    +ButtonedTitledPane()
+    +ButtonedTitledPane(String text, Node node)
+    ----
+    +getButton() : Button
+    setButtonText(String text) : void
+}
+
+class FormulaFormFactory {
+    +request(String name) : ValueProperty
+    +request(String name, Pattern pattern) : ValueProperty
+    +requestDecimal(String name) : ValueProperty
+    +requestInteger(String name) : ValueProperty
+
+    +apply(FormulaFormPane) : void
+}
+
+class LabelTextField {
+    +LabelTextField(String name)
+    ---
+    +getName() : String
+    +getDescription() : String
+    +setDescription(String description) : void
+    +setDefault(String defVal) : void
+    +getDefault() : String
+
+    +getTextField() : TextField
+
+    +setTextConverter(StringConverter<?> converter) : void
+    +getValue() : String
+    +setValue(String val) : void
+    +setEditable(boolean editable) : void
+
+    +setOnValueChanged(Consumer<String> consumer) : void
+}
+
+class LabelTextFieldAction {
+    +LabelTextFieldAction(String name, FormulaAction action)
+    ---
+    +apply(InputValues valuesS) : void
+}
+
 MainPane --o Sidebar
-Sidebar --o FormulaGroupNode
-FormulaFormPaneGroup --o FormulaFormPane
+MainPane --o FormulaFormGroup
 
-' relation with contract
-FormulaGroupNode --o FormulaGroup
+Sidebar --o Sidebar.FormulaGroupNode
+Sidebar --- FormulaGroupNode : create
+Sidebar.FormulaGroupNode --o FormulaGroup
 
-FormulaFormPane --|> InputValues
-FormulaFormPane --o Formula
+FormulaGroupNode --|> Sidebar.FormulaGroupNode
+
+FormulaFormGroup --o FormulaFormNode
+
+FormulaFormGroup --o ButtonedTitledPane
+
+ButtonedTitledPane -[hidden]- FormulaFormNode
+
+FormulaFormNode --|> InputValues
+FormulaFormNode --o Formula
+FormulaFormNode --|> FormulaForm
+FormulaFormNode -- FormulaFormFactory
+FormulaFormNode --o LabelTextField
+FormulaFormNode --o LabelTextFieldAction
+
+FormulaFormFactory --|> InputRequest
+FormulaFormFactory -- FormulaForm
+FormulaFormFactory -- LabelTextField : create
+FormulaFormFactory -- LabelTextFieldAction : create
+
+LabelTextField --|> ValueProperty
+
+LabelTextFieldAction -[hidden]- LabelTextField
+
+LabelTextFieldAction --|> LabelTextField
+LabelTextFieldAction --* FormulaAction
 }
 
 

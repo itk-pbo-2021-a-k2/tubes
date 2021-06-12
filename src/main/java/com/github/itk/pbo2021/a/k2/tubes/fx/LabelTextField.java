@@ -11,7 +11,7 @@ import javafx.util.converter.DefaultStringConverter;
 
 import java.util.function.Consumer;
 
-public class LabelTextFieldPane extends VBox implements ValueProperty {
+public class LabelTextField extends VBox implements ValueProperty {
   private final Label name;
   private final TextField textField = new TextField();
   private String defVal;
@@ -20,7 +20,7 @@ public class LabelTextFieldPane extends VBox implements ValueProperty {
   private Consumer<String> onTextChanged = s -> {
   };
 
-  public LabelTextFieldPane(String labelName) {
+  public LabelTextField(String labelName) {
     name = new Label(labelName);
 
     getChildren().add(name);
@@ -63,7 +63,7 @@ public class LabelTextFieldPane extends VBox implements ValueProperty {
     return defVal != null;
   }
 
-  public LabelTextFieldPane setOnTextChanged(Consumer<String> onTextChanged) {
+  public LabelTextField setOnTextChanged(Consumer<String> onTextChanged) {
     this.onTextChanged = onTextChanged;
     return this;
   }
@@ -91,6 +91,7 @@ public class LabelTextFieldPane extends VBox implements ValueProperty {
 
   public void setOnValueChanged(Consumer<String> action) {
     textField.setOnAction(actionEvent -> {
+      action.accept(getValue());
     });
   }
 

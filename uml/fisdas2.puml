@@ -3,43 +3,73 @@
 
 package com.github.itk.pbo2021.a.k2.tubes {
 
+fisdas2 -[hidden]--- contract
+
 package fisdas2 {
 
 class RRI {
     +name() : String
     +apply(InputRequest input) : void
+    +besarImpedansi(InputValues values) : String
+    +arusMaksimal(InputValues values) : String
+    +teganganResistor(InputValues values) : String
+    +tegannganinduktor(InputValues values) : String
 }
 
 class JW {
     +name() : String
     +apply((InputRequest input) : void
+    +Ra(InputValues values) : String
+    +Rb(InputValues values) : String
+    +Rc(InputValues values) : String
+    +Rb3(InputValues values) : String
+    +RTotal(InputValues values) : String
+    +I(InputValues values) : String
 }
 
 class HK {
     +name() : String
-    +apply((InputRequest input) : void
+    +apply(InputRequest input) : void
+    +V1(InputValues values) : String
+    +V2(InputValues values) : String
+    +V3(InputValues values) : String
 }
 
 class RLC {
     +name() : String
     +apply((InputRequest input) : void
+    +arusMaksimal(InputValues values) : String
+    +teganganresistor(InputValues values) : String
+    +tegannganinduktor(InputValues values) : String
 }
 
 class HC {
     +name() : String
-    +apply((InputRequest input) : void
+    +apply(InputRequest input) : void
+    +hukumColoumb(InputValues values) : String
+}
+
+class KD {
+    +name() : String
+    +apply(InputRequest input) : void
+    +nilaikapasitansi(InputValues values) : String
+    +jumlahmuatan(InputValues values) : String
+    +energitersimpan(InputValues values) : String
 }
 
 
-RRI --* Formula
-JW --* Formula
-HC --* Formula
-RLC --* Formula
-HK --* Formula
+RRI --|> Formula
+JW --|> Formula
+HC --|> Formula
+RLC --|> Formula
+HK --|> Formula
+KD --|> Formula
 
 RLC -[hidden]- RRI
 JW -[hidden]- HC
 HK -[hidden]- RRI
+HK -[hidden]- JW
+KD -[hidden] HC
 
 
 }

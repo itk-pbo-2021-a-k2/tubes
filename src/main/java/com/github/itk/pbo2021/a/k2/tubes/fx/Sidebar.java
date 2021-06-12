@@ -1,7 +1,6 @@
 package com.github.itk.pbo2021.a.k2.tubes.fx;
 
 import com.github.itk.pbo2021.a.k2.tubes.contract.Formula;
-import com.github.itk.pbo2021.a.k2.tubes.contract.FormulaGroup;
 import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
@@ -23,11 +22,11 @@ public class Sidebar extends TitledPane {
     this.onFormulaButtonAction = onFormulaButtonAction;
   }
 
-  protected FormulaGroupNode create(FormulaGroup factory) {
-    return new DefaultFormulaFactoryNode(factory);
+  protected FormulaGroupNode create(com.github.itk.pbo2021.a.k2.tubes.contract.FormulaGroup factory) {
+    return new com.github.itk.pbo2021.a.k2.tubes.fx.FormulaGroupNode(factory);
   }
 
-  public void add(FormulaGroup factory) {
+  public void add(com.github.itk.pbo2021.a.k2.tubes.contract.FormulaGroup factory) {
     var child = create(factory);
     child.setOnFormulaButtonAction(formula -> onFormulaButtonAction.accept(formula));
     layout.getChildren().add(child.toNode());

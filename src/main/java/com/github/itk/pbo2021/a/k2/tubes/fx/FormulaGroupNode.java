@@ -10,16 +10,16 @@ import javafx.scene.layout.VBox;
 
 import java.util.function.Consumer;
 
-public class DefaultFormulaFactoryNode extends BorderPane implements Sidebar.FormulaGroupNode {
-  private final FormulaGroup factory;
+public class FormulaGroupNode extends BorderPane implements Sidebar.FormulaGroupNode {
+  private final FormulaGroup group;
 
   Consumer<Formula> action = formula -> {
   };
 
-  public DefaultFormulaFactoryNode(FormulaGroup factory) {
-    this.factory = factory;
+  public FormulaGroupNode(FormulaGroup group) {
+    this.group = group;
 
-    TitledPane pane = new TitledPane(factory.name(), createChild(factory));
+    TitledPane pane = new TitledPane(group.name(), createChild(group));
     pane.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
     setCenter(pane);
   }
@@ -40,15 +40,19 @@ public class DefaultFormulaFactoryNode extends BorderPane implements Sidebar.For
 
   protected Node createChild(FormulaGroup factory) {
     var node = new VBox();
+    node.setFillWidth(true);
+    node.setSpacing(10);
+
     for (var formula : factory) {
       var child = createChildNode(formula);
       child.setOnAction(actionEvent -> action.accept(formula));
+      child.setMaxWidth(Double.MAX_VALUE);
       node.getChildren().add(child);
     }
     return node;
   }
 
-  public FormulaGroup getFactory() {
-    return factory;
+  public FormulaGroup getFormulaGroup() {
+    return group;
   }
 }

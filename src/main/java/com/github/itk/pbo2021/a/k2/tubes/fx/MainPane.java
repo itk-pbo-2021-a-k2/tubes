@@ -8,7 +8,7 @@ public class MainPane extends BorderPane {
 
   Sidebar sidebar = new Sidebar();
 
-  FormulaFormPaneGroup formulaPane = new FormulaFormPaneGroup();
+  FormulaFormGroup formulaPane = new FormulaFormGroup();
   ColumnConstraints formulaPaneColumnConstraint;
 
   ColumnConstraints sidebarColumnConstraint;

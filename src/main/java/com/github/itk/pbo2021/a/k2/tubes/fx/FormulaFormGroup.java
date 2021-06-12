@@ -10,16 +10,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import jfxtras.styles.jmetro.JMetroStyleClass;
 
-public class FormulaFormPaneGroup extends TitledPane {
+public class FormulaFormGroup extends TitledPane {
   ScrollPane scrollPane = new ScrollPane();
   VBox layout = new VBox();
 
-  public FormulaFormPaneGroup() {
+  public FormulaFormGroup() {
     layout.setSpacing(20);
     layout.setAlignment(Pos.TOP_LEFT);
     scrollPane.setContent(layout);
     scrollPane.setFitToWidth(true);
-    scrollPane.setFitToHeight(true);
 
     scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
 
